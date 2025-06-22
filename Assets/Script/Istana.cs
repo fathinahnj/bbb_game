@@ -1,30 +1,39 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Istana : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public int maxHP = 60;
+    private int currentHP;
+
+    public Image healthBarFill; // Drag HealthBar_Fill ke sini via Inspector
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHP = maxHP;
+        UpdateHealthBar();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= amount;
-        Debug.Log("Istana HP: " + currentHealth);
+        currentHP -= damage;
+        if (currentHP < 0) currentHP = 0;
 
-        if (currentHealth <= 0)
+        Debug.Log("Istana HP: " + currentHP);
+        UpdateHealthBar();
+
+        if (currentHP == 0)
         {
-            GameOver();
+            Debug.Log("GAME OVER: Istana hancur!");
+            // TODO: Trigger game over screen
         }
     }
 
-    void GameOver()
+    void UpdateHealthBar()
     {
-        Debug.Log("GAME OVER: Istana hancur!");
-        // Nanti bisa tambahkan UI Game Over, restart, dll
-        Time.timeScale = 0;
+        if (healthBarFill != null)
+        {
+            healthBarFill.fillAmount = (float)currentHP / maxHP;
+        }
     }
 }
