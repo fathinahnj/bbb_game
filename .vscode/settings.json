@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Bang Bang Bastion!.sln"
+    "dotnet.defaultSolution": "bbb_game.sln"
 }
