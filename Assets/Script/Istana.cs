@@ -16,16 +16,14 @@ public class Istana : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (GameManager.isGameOver) return;
+
         currentHP -= damage;
-        if (currentHP < 0) currentHP = 0;
-
         Debug.Log("Istana HP: " + currentHP);
-        UpdateHealthBar();
 
-        if (currentHP == 0)
+        if (currentHP <= 0)
         {
-            Debug.Log("GAME OVER: Istana hancur!");
-            // TODO: Trigger game over screen
+            GameManager.GameOver();
         }
     }
 

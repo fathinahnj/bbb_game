@@ -8,7 +8,9 @@ public class Goblin : MonoBehaviour
 
     void Update()
     {
-        if (targetIstana != null && !hasReachedIstana)
+        if (GameManager.isGameOver || hasReachedIstana) return;
+
+        if (targetIstana != null)
         {
             Vector3 direction = (targetIstana.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
@@ -17,10 +19,13 @@ public class Goblin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (GameManager.isGameOver) return;
+
         if (other.CompareTag("Istana") && !hasReachedIstana)
         {
             other.GetComponent<Istana>().TakeDamage(10);
             hasReachedIstana = true;
+            // Diam di tempat
         }
     }
 }
