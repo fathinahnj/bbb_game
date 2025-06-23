@@ -8,6 +8,7 @@ public class GridFromTilemap : MonoBehaviour
     public Vector2 gridWorldSize;
     public float nodeRadius;
     public LayerMask unwalkableMask;
+    public bool isReady = false;
 
     private float nodeDiameter;
     private int gridSizeX, gridSizeY;
@@ -22,6 +23,7 @@ public class GridFromTilemap : MonoBehaviour
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
 
         CreateGrid();
+        isReady = true;
     }
 
     void CreateGrid()

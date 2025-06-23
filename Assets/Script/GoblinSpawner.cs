@@ -27,7 +27,10 @@ public class GoblinSpawner : MonoBehaviour {
     }
 
     IEnumerator SpawnLoop() {
-        while (!GameManager.isGameOver) {
+        yield return new WaitForSeconds(0.1f);
+            
+        while (!GameManager.isGameOver)
+        {
             SpawnGoblin();
             yield return new WaitForSeconds(spawnInterval);
         }
